@@ -4,6 +4,7 @@ import { OrderContext } from '../../contexts/OrderContext';
 import { BasketItemProps } from '../../definitions/State';
 import { StyledTableCell, StyledTableRow } from '../../styles/Table';
 import { UserAction } from '../../definitions/State'
+import ProductButton from '../../styles/ProductButton';
 
 export interface ProductListItemProps {
     item: BasketItemProps;
@@ -16,7 +17,7 @@ const BasketItem = ({ item }: ProductListItemProps) => {
 
     const updatePrice = (price: number, pQuantity: number) => {
         if (pQuantity) {
-            return setCost((item.price * pQuantity).toFixed(2));
+            return setCost((price * pQuantity).toFixed(2));
         }
         return setCost('0');
     };
@@ -45,21 +46,8 @@ const BasketItem = ({ item }: ProductListItemProps) => {
                     value={quantity}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleUpdate({type: 'ON_QUANTITY_CHANGE', id: item.id, quantity: parseInt(e.target.value)})}
                 />
-                <button
-                    style={{cursor: 'pointer', padding: '5px', fontSize: '20px', backgroundColor: 'red', border: 'none', boxShadow: 'none', color: 'white', borderRadius: '10px', width: '40px', height: '40px', margin: '5px'}}
-                    data-test='decrement'
-                    onClick={() => handleUpdate({type: 'DECREMENT', id: item.id, quantity: 1 })}
-                >
-                    -
-                </button>
-                <button
-                    style={{cursor: 'pointer',padding: '5px', fontSize: '20px', backgroundColor: 'blue', border: 'none', boxShadow: 'none', color: 'white', borderRadius: '10px', width: '40px', height: '40px', margin: '5px'}}
-                    data-test='increment'
-                    aria-label='increment'
-                    onClick={() => handleUpdate({type: 'INCREMENT', id: item.id, quantity: 1 })}
-                >
-                    +
-                </button>
+                <ProductButton click={() => handleUpdate({type: 'DECREMENT', id: item.id, quantity: 1 })}>-</ProductButton>
+                <ProductButton increment click={() =>handleUpdate({type: 'INCREMENT', id: item.id, quantity: 1 })}>+</ProductButton>
             </StyledTableCell>
             <StyledTableCell align="center">£{cost}</StyledTableCell>
             <StyledTableCell align="center">
