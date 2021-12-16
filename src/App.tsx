@@ -1,12 +1,15 @@
-import React from 'react';
+import * as React from 'react';
+import { Container } from '@mui/material';
+import Checkout from './components/checkout/Checkout';
+import OrderContextProvider from './contexts/OrderContext';
 
 const App = () => {
-    const boom = 'hello';
     return (
-        <div>
-            <h1>My App</h1>
-            <p>{boom}</p>
-        </div>
+        <OrderContextProvider>
+            <Container maxWidth="md">
+                <Checkout />
+            </Container>
+        </OrderContextProvider>
     );
 };
 
