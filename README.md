@@ -2,6 +2,10 @@
 
 This project was built with React,Typescript,Webpack,Jest,Enzyme
 
+-----
+Demo Here: https://1-adeelahmad.github.io/Basket/
+-----
+
 This project is based on fictitious shopping basket. Where the user can adjust the quanity of an item and remove it, with the cost/ prices of the item and basket updating dynamically.
 
 Below are a few commands you can run locally after cloning it to your local machine. Below that  that I've given a summary of how I went about it.
